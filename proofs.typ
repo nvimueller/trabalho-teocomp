@@ -44,3 +44,8 @@ Resta agora provarmos que a redução $r$ descrita acima está correta:
 - Suponha que $(G, s, t) in Nu("HAMPATH")$. Então $M'$ não aceita o caminho formado pela soma das arestas pois não há caminho.
 
 Alternativamente, como provamos que a redução pode ser realizada em tempo polinomial e sabemos que $"HAMPATH"$ é NP-completo, temos que se for possível resolver $"TSP"$ em tempo polinomial, $"HAMPATH"$ também poderá ser solucionável em tempo polinomial. Isso, por sua vez, contradiz o fato de $"HAMPATH"$ não poder ser resolvido em tempo polinomial. Logo, $"TSP"$ também é NP-completo.
+
+
+= Essa última prova não funciona
+
+Porém, pode funcionar fazer o seguinte: receber G e detectar e remover ciclos: roda DFS e remove última aresta que levou a um ciclo. daí adiciona uma aresta de T a S. Daí roda TSP.
