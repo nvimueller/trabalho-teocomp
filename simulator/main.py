@@ -2,14 +2,8 @@
 
 def main():
     word = list(input("insira uma palavra na fita: ").strip())
+    print("")
     machine, table = buildmachine()
-    print(machine)
-    print("")
-    
-    for i in table:
-        print(i)
-    print("")
-    
     runmachine(machine, table, word)
 
 # rewritten
@@ -122,8 +116,9 @@ def runmachine(machine, table, word):
     state = makestate(machine, tape1)
     indefinitestate = False
     
+    counter = 0
+    
     while(not indefinitestate):
-
         state = transition(table, state)
         
         if state["done"]:
@@ -149,18 +144,16 @@ def runmachine(machine, table, word):
             
             state["curchar1"] = tape1[state["headpos1"]]
             state["curchar2"] = tape2[state["headpos2"]]
-
-            print("STATE AFTER TRANSITION ", state)
+            
+            print(f"STEP {counter}")
+            counter += 1
+            print(tape1)
+            print(tape2)
+            print("")
     
-    print("CURSTATE ", state["curstate"])
-    print("FINALSTATES ", machine["finalstates"])
-    print(state["curstate"] in machine["finalstates"])
-
     if state["curstate"] in machine["finalstates"]:
-        print("WORD ACCEPTED")
+        print("FINAL STATUS: WORD ACCEPTED")
     else:
-        print("WORD REJECTED")
-    print(tape1)
-    print(tape2)
+        print("FINAL STATUS: WORD REJECTED")
 
 main()
