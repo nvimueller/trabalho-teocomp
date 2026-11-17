@@ -58,7 +58,7 @@ def makestate(machine, tape):
     return state
 
 # rewritten
-def transition(table, state):
+def transition(table, state, machine):
     found = False
     for tran in table:
         if tran["curstate"] == state["curstate"] and tran["curchar1"] == state["curchar1"] and tran["curchar2"] == state["curchar2"]:
@@ -119,8 +119,11 @@ def runmachine(machine, table, word):
     counter = 0
     
     while(not indefinitestate):
-        state = transition(table, state)
+        state = transition(table, state, machine)
         
+        if ((state["curchar1"] not in machine["empty"] and state["curchar1"] not in machine["auxalphabet"] and state["curchar1"] not in machine["alphabet"]) or (state["curchar2"] not in machine["empty"] and state["curchar2"] not in machine["auxalphabet"] and state["curchar2"] not in machine["alphabet"])):
+            print("ENCONTRADO SÍMBOLO QUE NÃO CORRESPONDE À DESCRIÇÃO DA MÁQUINA")
+            break
         if state["done"]:
             indefinitestate = True
             break
