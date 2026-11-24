@@ -2,7 +2,10 @@
 
 def main():
     word = list(input("insira uma palavra na fita: ").strip())
+    if not word:
+        word = "-"
     print("")
+    print("PALAVRA INSERIDA NA FITA: ", word)
     machine, table = buildmachine()
     runmachine(machine, table, word)
 
